@@ -1,16 +1,18 @@
 #include "tools.h"
 
+// Функция для ввода числа в заданном диапазоне
 int inputInt(int a, int b)
 {
     int n;
     while (true)
     {
         cin >> n;
+        // Если пользователь ввел не число или есть символы после числа, запрашиваем повторно
         while ((!cin) || (cin.get() != '\n'))
         {
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "\n Пожалуйста, введите численное значение\n\t>>> ";
+            cout << "\n Пожалуйста, введите численное значение\n\t--->  ";
             cin >> n;
         }
         if (n >= a && n <= b) break;
@@ -19,11 +21,12 @@ int inputInt(int a, int b)
     return n;
 }
 
-
+// Функция для ввода пароля, скрывая символы
 string inputPassword() {
     string password;
     int ch = 0;
     cout << " Введите пароль: ";
+    // _getch() считывает введенный символ, не отображая его на экране
     while ((ch = _getch()) != 13) {
         if (ch == 8) {
             if (!password.empty()) {
@@ -32,6 +35,7 @@ string inputPassword() {
             }
         }
         else {
+            //выводим *
             cout << "*";
             password += static_cast<char>(ch);
         }

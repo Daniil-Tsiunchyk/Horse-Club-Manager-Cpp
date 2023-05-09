@@ -1,5 +1,6 @@
 #include "admin.h"
 
+// Функция для добавления пользователя
 void addUser(User users[], int& userCount) {
     string username, password;
     int status;
@@ -19,6 +20,7 @@ void addUser(User users[], int& userCount) {
     cout << "Пользователь успешно добавлен." << endl;
 }
 
+// Функция для удаления пользователя
 void removeUser(User users[], int& userCount, const User& currentAdmin) {
     string username;
     cout << " Введите имя пользователя, которого хотите удалить: ";
@@ -50,13 +52,15 @@ void removeUser(User users[], int& userCount, const User& currentAdmin) {
     cout << " Пользователь успешно удален." << endl;
 }
 
+// Функция для вывода списка пользователей
 void viewUsers(User users[], int userCount) {
-    cout << " Список пользователей: " << endl;
+    cout << "\n Список пользователей: " << endl;
     for (int i = 0; i < userCount; i++) {
         cout << " \tИмя пользователя: " << users[i].username << ", статус: " << (users[i].status == 1 ? "администратор" : "пользователь") << endl;
     }
 }
 
+// Функция авторизации
 User loginUser(User users[], int userCount) {
     string username;
     const int maxAttempts = 3;
@@ -86,6 +90,7 @@ User loginUser(User users[], int userCount) {
     return User{ "", "", -1 };
 }
 
+// Функция для регистрации нового пользователя
 void registerUser(User users[], int& userCount) {
     string username;
     cout << " Введите логин: ";
@@ -116,6 +121,7 @@ void registerUser(User users[], int& userCount) {
 }
 
 
+// Функция для записи пользователей в файл
 bool writeUsersToFile(User users[], int userCount) {
     ofstream file(USER_FILE);
     if (!file) {
@@ -134,6 +140,7 @@ bool writeUsersToFile(User users[], int userCount) {
 }
 
 
+// Функция для чтения пользователей из файла
 bool readUsersFromFile(User users[], int& userCount) {
     ifstream file(USER_FILE);
     if (!file) {

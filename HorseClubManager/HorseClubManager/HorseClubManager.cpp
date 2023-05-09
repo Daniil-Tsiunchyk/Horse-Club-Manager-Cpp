@@ -14,8 +14,12 @@ void loadData_1(Horse horses[], int& horseCount, Result results[], int& resultCo
 
 
 int main() {
+
+    // Установка кодировки консоли на 1251 для корректного отображения кириллицы
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+
+    // Объявление основных переменных и структур данных
     User currentUser;
     const int max = 100;
     int userCount = 0, horseCount = 0, resultCount = 0, choice;
@@ -23,15 +27,18 @@ int main() {
     Horse horses[max];
     Result results[max];
 
-
+    // Загрузка данных из файлов в массивы
     loadData_1(horses, horseCount, results, resultCount, users, userCount);
 
+    // Главный цикл программы, обрабатывающий выбор пользователя (вход, регистрация, выход)
     while (true) {
-        cout << "\n 1. Войти\n";
+        system("cls");
+        cout << "\n\n 1. Войти\n";
         cout << " 2. Зарегистрироваться\n";
-        cout << " 3. Выйти\n";
+        cout << " 3. Выйти\n\t---> ";
         choice = inputInt(1, 3);
 
+        // Обработка выбора пользователя
         switch (choice) {
         case 1:
             currentUser = loginUser(users, userCount);
@@ -45,7 +52,8 @@ int main() {
         case 2:
             registerUser(users, userCount);
             break;
-        case 3:
+        case 3:  
+            // Сохранение данных в файлах перед выходом из программы
             writeHorsesToFile(horses, horseCount);
             writeResultsToFile(results, resultCount);
             writeUsersToFile(users, userCount);
@@ -56,16 +64,20 @@ int main() {
     }
 }
 
+// Функция выводит меню пользователя и обрабатывает его выбор
 void showUserMenu(User& currentUser, User users[], int& userCount, Horse horses[], int& horseCount, Result results[], int& resultCount) {
     int choice;
     bool exitMenu = false;
+
+    // Цикл для повторного отображения меню, пока пользователь не выберет выход
     while (!exitMenu) {
-        cout << "\n 1. Просмотреть лошадей\n";
+        cout << "\n\n 1. Просмотреть лошадей\n";
         cout << " 2. Поиск лошади\n";
         cout << " 3. Просмотреть результаты\n";
-        cout << " 4. Выйти\n";
+        cout << " 4. Выйти\n\t---> ";
         choice = inputInt(1, 4);
 
+        // Обработка выбора пользователя
         switch (choice) {
         case 1:
             viewHorses(horses, horseCount);
@@ -85,27 +97,28 @@ void showUserMenu(User& currentUser, User users[], int& userCount, Horse horses[
     }
 }
 
+// Функция выводит меню администратора и обрабатывает его выбор
 void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses[], int& horseCount, Result results[], int& resultCount) {
     int choice;
     bool exitMenu = false;
 
+    // Цикл для повторного отображения меню, пока администратор не выберет выход
     while (!exitMenu) {
-        cout << "\n----- Меню администратора-----\n";
+        cout << "\n\n----- Меню администратора-----\n";
         cout << " 1. Работа с аккаунтами\n";
         cout << " 2. Работа с лошадями и рекордами\n";
-        cout << " 3. Выйти из меню\n";
-        cout << "\tВыберите действие: ";
+        cout << " 3. Выйти из меню\n\t---> ";
         choice = inputInt(1, 3);
 
+        // Обработка выбора администратора
         switch (choice) {
         case 1:
             while (!exitMenu) {
-                cout << "\n----- Работа с аккаунтами -----\n";
+                cout << "\n\n----- Работа с аккаунтами -----\n";
                 cout << " 1. Просмотреть пользователей\n";
                 cout << " 2. Добавить пользователя\n";
                 cout << " 3. Удалить пользователя\n";
-                cout << " 4. Вернуться в меню\n";
-                cout << "\tВыберите действие: ";
+                cout << " 4. Вернуться в меню\n\t---> ";
                 choice = inputInt(1, 4);
 
                 switch (choice) {
@@ -129,7 +142,7 @@ void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses
             break;
         case 2:
             while (!exitMenu) {
-                cout << "\n----- Работа с лошадями и рекордами -----\n";
+                cout << "\n\n----- Работа с лошадями и рекордами -----\n";
                 cout << " 1. Просмотреть лошадей\n";
                 cout << " 2. Добавить лошадь\n";
                 cout << " 3. Редактировать лошадь\n";
@@ -138,8 +151,7 @@ void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses
                 cout << " 6. Добавить результат\n";
                 cout << " 7. Удалить результат\n";
                 cout << " 8. Отсортировать результаты\n";
-                cout << " 9. Вернуться в меню\n";
-                cout << "\tВыберите действие: ";
+                cout << " 9. Вернуться в меню\n\t---> ";
                 choice = inputInt(1, 9);
 
                 switch (choice) {
@@ -185,6 +197,7 @@ void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses
     }
 }
 
+// Функция loadData_1 загружает данные из файлов в массивы
 void loadData_1(Horse horses[], int& horseCount, Result results[], int& resultCount, User users[], int& userCount) {
     const int max = 100;
     horseCount = readHorsesFromFile(horses);

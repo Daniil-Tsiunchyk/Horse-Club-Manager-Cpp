@@ -1,25 +1,31 @@
 #pragma once
+// Включает строковую библиотеку, используемую в программе
 #include <string>
 #include <iostream>
-#include "admin.h"
+#include "admin.h"    // подключает заголовочный файл с определениями администратора
+#include "tools.h"    // подключает заголовочный файл с инструментами
 
 using namespace std;
 
+// Константы для имен файлов
 const string HORSE_FILE = "horses.txt";
 const string RESULT_FILE = "results.txt";
 
+// Структура для представления информации о лошадях
 struct Horse {
     string name;
     string breed;
     int age;
 };
 
+// Структура для представления информации о результатах
 struct Result {
     string horseName;
     string date;
     double result;
 };
 
+// Объявления функций для работы с лошадьми и результатами
 int readHorsesFromFile(Horse horses[]);
 void writeHorsesToFile(Horse horses[], int horseCount);
 int readResultsFromFile(Result results[]);

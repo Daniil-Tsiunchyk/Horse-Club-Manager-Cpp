@@ -7,6 +7,3 @@ user
 new_one
 860f02649eaa284f6cd1833b9126b4ccd47ac0d461eb0ce984507e75d79c89f3
 0
-qwer
-qwer
-1
