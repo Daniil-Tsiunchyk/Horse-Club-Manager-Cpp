@@ -9,7 +9,7 @@ void addUser(User users[], int& userCount) {
     cout << " Введите пароль: ";
     cin >> password;
     cout << " Введите статус (0 - пользователь, 1 - администратор): ";
-    cin >> status;
+    status = inputInt(0, 1);
 
     users[userCount].username = username;
     users[userCount].password = password;
@@ -57,37 +57,54 @@ void viewUsers(User users[], int userCount) {
     }
 }
 
-
 User loginUser(User users[], int userCount) {
-    string username, password;
-    cout << " Введите логин: ";
-    cin >> username;
-    cout << " Введите пароль: ";
-    cin >> password;
-    password = doHash(password);
-    for (int i = 0; i < userCount; i++) {
-        if (users[i].username == username && users[i].password == password) {
-            cout << " Добро пожаловать, " << username << "!" << endl;
-            return users[i];
+    string username;
+    const int maxAttempts = 3;
+    int attempts = 0;
+
+    while (attempts < maxAttempts) {
+        cout << " Введите логин: ";
+        cin >> username;
+        string password = inputPassword();
+        password = doHash(password);
+
+        for (int i = 0; i < userCount; i++) {
+            if (users[i].username == username && users[i].password == password) {
+                cout << " Добро пожаловать, " << username << "!" << endl;
+                return users[i];
+            }
+        }
+
+        cout << " Неверное имя пользователя или пароль." << endl;
+        attempts++;
+        if (attempts < maxAttempts) {
+            cout << " Осталось попыток: " << (maxAttempts - attempts) << endl;
         }
     }
 
-    cout << " Неверное имя пользователя или пароль." << endl;
+    cout << " Превышено количество попыток входа. " << endl;
     return User{ "", "", -1 };
 }
 
 void registerUser(User users[], int& userCount) {
-    string username, password;
+    string username;
     cout << " Введите логин: ";
     cin >> username;
-    cout << " Введите пароль: ";
-    cin >> password;
 
     for (int i = 0; i < userCount; i++) {
         if (users[i].username == username) {
             cout << " Имя пользователя уже занято. Пожалуйста, выберите другое имя." << endl;
             return;
         }
+    }
+
+    string password = inputPassword();
+    cout << " Подтвердите пароль: ";
+    string confirmPassword = inputPassword();
+
+    if (password != confirmPassword) {
+        cout << " Пароли не совпадают. Попробуйте зарегистрироваться снова." << endl;
+        return;
     }
 
     users[userCount].username = username;

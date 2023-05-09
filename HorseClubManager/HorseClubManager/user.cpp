@@ -16,7 +16,7 @@ void addHorse(Horse horses[], int& horseCount) {
     cout << " ¬ведите породу лошади: ";
     cin >> breed;
     cout << " ¬ведите возраст лошади: ";
-    cin >> age;
+    age = inputInt(0, 45);
 
     horses[horseCount].name = name;
     horses[horseCount].breed = breed;
@@ -51,7 +51,7 @@ void editHorse(Horse horses[], int horseCount) {
     cout << " ¬ведите новую породу: ";
     cin >> newBreed;
     cout << " ¬ведите новый возраст: ";
-    cin >> newAge;
+    newAge = inputInt(0, 45);
 
     horses[horseIndex].name = newName;
     horses[horseIndex].breed = newBreed;
@@ -114,7 +114,7 @@ void addResult(Result results[], int& resultCount) {
     cout << " ¬ведите дату (дд.мм.гггг): ";
     cin >> date;
     cout << " ¬ведите результат: ";
-    cin >> result;
+    result = inputInt(0, 500);
 
     results[resultCount].horseName = horseName;
     results[resultCount].date = date;

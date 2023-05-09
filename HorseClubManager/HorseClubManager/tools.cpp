@@ -20,31 +20,26 @@ int inputInt(int a, int b)
 }
 
 
-string inputPassword()
-{
+string inputPassword() {
     string password;
     int ch = 0;
-    while (true)
-    {
-        ch = _getwch();
-
-        if (ch == 13)
-            break;
-        else
-            if (ch == 8)
-            {
-                cout << (char)8 << ' ' << (char)8;
-                if (!password.empty())
-                    password.erase(password.length() - 1);
+    cout << " ¬ведите пароль: ";
+    while ((ch = _getch()) != 13) {
+        if (ch == 8) {
+            if (!password.empty()) {
+                password.erase(password.length() - 1);
+                cout << "\b \b";
             }
-            else
-            {
-                cout << "*";
-                password += (char)ch;
-            }
+        }
+        else {
+            cout << "*";
+            password += static_cast<char>(ch);
+        }
     }
+    cout << endl;
     return password;
 }
+
 
 uint32_t rightRotate(uint32_t value, size_t bits) {
     return (value >> bits) | (value << (32 - bits));

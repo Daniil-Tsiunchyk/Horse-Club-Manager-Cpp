@@ -30,7 +30,7 @@ int main() {
         cout << "\n 1. Войти\n";
         cout << " 2. Зарегистрироваться\n";
         cout << " 3. Выйти\n";
-        cin >> choice;
+        choice = inputInt(1, 3);
 
         switch (choice) {
         case 1:
@@ -64,7 +64,7 @@ void showUserMenu(User& currentUser, User users[], int& userCount, Horse horses[
         cout << " 2. Поиск лошади\n";
         cout << " 3. Просмотреть результаты\n";
         cout << " 4. Выйти\n";
-        cin >> choice;
+        choice = inputInt(1, 4);
 
         switch (choice) {
         case 1:
@@ -95,7 +95,7 @@ void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses
         cout << " 2. Работа с лошадями и рекордами\n";
         cout << " 3. Выйти из меню\n";
         cout << "\tВыберите действие: ";
-        cin >> choice;
+        choice = inputInt(1, 3);
 
         switch (choice) {
         case 1:
@@ -106,7 +106,7 @@ void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses
                 cout << " 3. Удалить пользователя\n";
                 cout << " 4. Вернуться в меню\n";
                 cout << "\tВыберите действие: ";
-                cin >> choice;
+                choice = inputInt(1, 4);
 
                 switch (choice) {
                 case 1:
@@ -140,7 +140,7 @@ void showAdminMenu(User& currentUser, User users[], int& userCount, Horse horses
                 cout << " 8. Отсортировать результаты\n";
                 cout << " 9. Вернуться в меню\n";
                 cout << "\tВыберите действие: ";
-                cin >> choice;
+                choice = inputInt(1, 9);
 
                 switch (choice) {
                 case 1:
