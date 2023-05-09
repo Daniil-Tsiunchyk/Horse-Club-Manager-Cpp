@@ -1,0 +1,9 @@
+admin
+admin
+1
+user
+user
+0
+test
+test
+0
